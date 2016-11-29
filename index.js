@@ -1,7 +1,8 @@
 'use strict';
 
-var map = require('../../config/rq');
-
-module.exports = function(e) {
-    return map ? require('../../' + map[e]) : null;
+module.exports = function(mapping) {
+	var mapping = require(mapping || '../../config/rq');
+	return function(e) {
+		return mapping ? require('../../' + mapping[e]) : null;
+	};
 };
